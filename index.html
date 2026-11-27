@@ -15,7 +15,7 @@
   <link rel="icon" href="assets/lamark-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -48,12 +48,12 @@
     <a class="logo" href="#top"><img src="assets/lamark-logo.png" width="640" height="277" alt="Lamark Biotech"></a>
     <nav aria-label="Main">
       <ul class="nav-links" id="navLinks">
-        <li><a href="#journey">The problem</a></li>
-        <li><a href="#platform">Science</a></li>
+        <li><a href="#heat">The problem</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#science">Science</a></li>
         <li><a href="#pipeline">Pipeline</a></li>
         <li><a href="#team">Team</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#partner">Careers</a></li>
+        <li><a href="#gallery">In pictures</a></li>
       </ul>
     </nav>
     <div class="nav-cta">
@@ -65,16 +65,15 @@
 
 <main>
 
-  <!-- HERO: say what Lamark does in the first screen -->
+  <!-- HERO: the headline beside a contact sheet of the vial's journey -->
   <section class="hero dark">
-    <div class="hero-bg" aria-hidden="true"><img src="assets/img/hero.jpg" alt="" width="900" height="600" fetchpriority="high"></div>
     <div class="wrap hero-grid">
-      <div>
+      <div class="hero-copy">
         <p class="eyebrow">Thermostable biologics · India and France</p>
         <h1>Insulin that doesn't need a <span class="hl">fridge.</span></h1>
         <p class="lede">In much of India and Africa, the cold chain breaks long before insulin reaches the patient. Lamark's patented ProteoStrong technology keeps biologics stable at room temperature, so the medicine survives the journey.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#pipeline">See the pipeline</a>
+          <a class="btn btn-primary" href="#heat">Feel the problem</a>
           <a class="btn btn-ghost" href="#partner">Partner with us</a>
         </div>
         <div class="hero-facts">
@@ -85,97 +84,142 @@
         </div>
       </div>
 
-      <div class="thermo" aria-labelledby="thermoTitle">
-        <div class="thermo-top">
-          <div>
-            <p class="thermo-label" id="thermoTitle">Drag to the temperature where you live</p>
-            <div class="thermo-temp"><span id="tempVal">35</span>°C</div>
-            <p class="thermo-place" id="tempPlace">A Delhi afternoon in April</p>
-          </div>
+      <div class="collage" aria-label="Where insulin travels">
+        <figure class="tile t1" data-depth="0.06">
+          <img src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory" width="890" height="500" fetchpriority="high">
+          <figcaption><span class="chip cold">2–8°C</span>Made in a cold room</figcaption>
+        </figure>
+        <figure class="tile t2" data-depth="-0.04">
+          <img src="assets/img/stop-highway.jpg" alt="Trucks at a highway stop at night" width="1024" height="768">
+          <figcaption><span class="chip warm">Hot</span>Two days on the road</figcaption>
+        </figure>
+        <figure class="tile t3" data-depth="0.09">
+          <img src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684">
+          <figcaption><span class="chip warm">Hotter</span>No reliable fridge</figcaption>
+        </figure>
+        <figure class="tile t4" data-depth="-0.07">
+          <img src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575">
+          <figcaption><span class="chip gold">InStrong</span>Stable at 50°C</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="hero-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>BIRAC BIG ignition grant</span><i></i><span>Genopole, Paris</span><i></i><span>Venture Center, NCL Pune</span><i></i><span>Exclusive in-licence from Vision Institute, France</span><i></i><span>150+ publications across the team</span><i></i><span>Best three biopharma startups, IKMC 2019</span><i></i>
+        <span>BIRAC BIG ignition grant</span><i></i><span>Genopole, Paris</span><i></i><span>Venture Center, NCL Pune</span><i></i><span>Exclusive in-licence from Vision Institute, France</span><i></i><span>150+ publications across the team</span><i></i><span>Best three biopharma startups, IKMC 2019</span><i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEAT: the visitor drags the temperature and the photo heats up -->
+  <section class="heat" id="heat" style="--heat:.67">
+    <div class="heat-photo" aria-hidden="true">
+      <img src="assets/img/stop-patient.jpg" alt="" width="1024" height="520" loading="lazy">
+      <div class="heat-cold"></div>
+      <div class="heat-hot"></div>
+    </div>
+    <div class="wrap heat-grid">
+      <div class="heat-copy">
+        <p class="eyebrow">Drag the heat</p>
+        <h2>Where does your insulin spend the afternoon?</h2>
+        <div class="heat-reading">
+          <div class="heat-temp"><span id="tempVal">35</span><small>°C</small></div>
+          <p class="heat-place" id="tempPlace">A Delhi afternoon in April</p>
         </div>
         <label class="sr-only" for="tempRange">Temperature in degrees Celsius</label>
         <input type="range" id="tempRange" min="4" max="50" step="1" value="35">
-        <div class="thermo-scale"><span>4°C · a fridge</span><span>50°C</span></div>
-        <div class="vials">
-          <div class="vial bad" id="vialStd">
-            <h4>Conventional insulin</h4>
-            <p>Labelled for storage at 2–8°C until use. Needs a working fridge at every step.</p>
-            <span class="state" id="stdState">Outside storage range</span>
-          </div>
-          <div class="vial ok" id="vialLmk">
-            <h4>InStrong</h4>
-            <p>Lamark's thermostable insulin. Stability sustained over time at 50°C.</p>
-            <span class="state" id="lmkState">Within tested range</span>
-          </div>
+        <div class="heat-scale"><span>4°C · a fridge</span><span>50°C</span></div>
+      </div>
+      <div class="vials">
+        <div class="vial bad" id="vialStd">
+          <p class="vial-k">Conventional insulin</p>
+          <p class="vial-t">Labelled for storage at 2–8°C until use. Needs a working fridge at every step.</p>
+          <span class="state" id="stdState">Outside storage range</span>
         </div>
-        <p class="thermo-note">InStrong is in development and not yet approved for patient use.</p>
+        <div class="vial ok" id="vialLmk">
+          <p class="vial-k">InStrong</p>
+          <p class="vial-t">Lamark's thermostable insulin. Stability sustained over time at 50°C.</p>
+          <span class="state" id="lmkState">Within tested range</span>
+        </div>
+        <p class="vial-note">InStrong is in development and not yet approved for patient use.</p>
       </div>
     </div>
   </section>
 
-  <!-- TRUST: checkable proof, before any emotion -->
-  <section class="trust" aria-label="Recognition and hosts">
-    <div class="wrap trust-row">
-      <span>Backed and hosted by</span>
-      <div class="trust-item">BIRAC BIG<small>Ignition seed grant</small></div>
-      <div class="trust-item">Genopole, Paris<small>Established 2021</small></div>
-      <div class="trust-item">Venture Center, NCL<small>R&amp;D, Pune</small></div>
-      <div class="trust-item">Vision Institute, France<small>Exclusive in-licence, 2022</small></div>
-      <div class="trust-item">150+ publications<small>across the scientific team</small></div>
-    </div>
-  </section>
-
-  <!-- JOURNEY: the stake in a human life -->
+  <!-- JOURNEY: a filmstrip, one photograph per stop -->
   <section class="section journey dark" id="journey">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">The journey of one vial</p>
-        <h2>Insulin is made in a cold room. It is needed in a hot village.</h2>
-        <p class="lede">Every stop between the factory and the patient needs refrigeration and uninterrupted power. Tap each stop to see where it breaks.</p>
-      </div>
-
-      <div class="journey-track reveal" role="tablist" aria-label="Stops on the supply chain">
-        <button class="stop" role="tab" aria-selected="true" data-stop="0">
-          <span class="stop-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 21V9l6 4V9l6 4V5h6v16H3z"/></svg></span>
-          <span><span class="stop-name">Factory</span><br><span class="stop-temp">Controlled cold room</span></span>
-        </button>
-        <button class="stop" role="tab" aria-selected="false" data-stop="1">
-          <span class="stop-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
-          <span><span class="stop-name">Highway</span><br><span class="stop-temp">Two days in a truck</span></span>
-        </button>
-        <button class="stop" role="tab" aria-selected="false" data-stop="2">
-          <span class="stop-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 10l9-6 9 6v10H3z"/><path d="M9 20v-6h6v6"/></svg></span>
-          <span><span class="stop-name">District store</span><br><span class="stop-temp">Power cuts in summer</span></span>
-        </button>
-        <button class="stop" role="tab" aria-selected="false" data-stop="3">
-          <span class="stop-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 21V8h16v13"/><path d="M12 11v6M9 14h6"/><path d="M2 8l10-5 10 5"/></svg></span>
-          <span><span class="stop-name">Village pharmacy</span><br><span class="stop-temp">No reliable fridge</span></span>
-        </button>
-        <button class="stop" role="tab" aria-selected="false" data-stop="4">
-          <span class="stop-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="7" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span>
-          <span><span class="stop-name">The patient</span><br><span class="stop-temp">A home in May</span></span>
-        </button>
-      </div>
-
-      <div class="journey-panel" id="journeyPanel" role="tabpanel" aria-live="polite">
-        <figure class="jp-photo">
-          <img id="jpImg" src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory bench" width="890" height="500">
-          <figcaption id="jpCap">Stop 1 · Where the vial is made</figcaption>
-        </figure>
-        <div class="jp-cards">
-        <div class="jp-card cold">
-          <span class="tag">With a cold chain</span>
-          <h3 id="jpColdTitle">Fine, for now</h3>
-          <p id="jpColdText">The vial leaves at 2–8°C. Every stop after this one has to keep it there.</p>
+      <div class="journey-head">
+        <div class="section-head reveal">
+          <p class="eyebrow">The journey of one vial</p>
+          <h2>Insulin is made in a cold room. It is needed in a hot village.</h2>
         </div>
-        <div class="jp-card warm">
-          <span class="tag">With InStrong</span>
-          <h3 id="jpWarmTitle">No fridge needed from here</h3>
-          <p id="jpWarmText">A thermostable formulation can be stored and shipped at room temperature, even in hotter climates.</p>
-        </div>
+        <div class="film-nav">
+          <button type="button" class="round" id="filmPrev" aria-label="Previous stop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="round" id="filmNext" aria-label="Next stop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
+    </div>
 
+    <ol class="film" id="film" aria-label="Five stops from factory to patient">
+      <li class="frame">
+        <img src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory bench" width="890" height="500" loading="lazy">
+        <div class="frame-body">
+          <span class="frame-n">01</span>
+          <h3>Factory</h3>
+          <p class="frame-where">Controlled cold room</p>
+          <p class="line cold"><b>Cold chain</b>The vial leaves at 2–8°C. Every stop after this one has to keep it there.</p>
+          <p class="line warm"><b>InStrong</b>Stored and shipped at room temperature from here on.</p>
+        </div>
+      </li>
+      <li class="frame">
+        <img src="assets/img/stop-highway.jpg" alt="Trucks parked at a highway stop at night" width="1024" height="768" loading="lazy">
+        <span class="stamp">Breaks here</span>
+        <div class="frame-body">
+          <span class="frame-n">02</span>
+          <h3>Highway</h3>
+          <p class="frame-where">Two days in a truck</p>
+          <p class="line cold"><b>Cold chain</b>Reefer trucks are scarce outside big cities. One breakdown is enough.</p>
+          <p class="line warm"><b>InStrong</b>Any truck will do. Lamark expects around 20% lower costs.</p>
+        </div>
+      </li>
+      <li class="frame">
+        <img src="assets/img/stop-store.jpg" alt="A primary health centre in India" width="1024" height="768" loading="lazy">
+        <span class="stamp">Breaks here</span>
+        <div class="frame-body">
+          <span class="frame-n">03</span>
+          <h3>District store</h3>
+          <p class="frame-where">Power cuts in summer</p>
+          <p class="line cold"><b>Cold chain</b>Stock that warms up in an outage quietly loses efficacy.</p>
+          <p class="line warm"><b>InStrong</b>The power cut stops mattering.</p>
+        </div>
+      </li>
+      <li class="frame">
+        <img src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684" loading="lazy">
+        <span class="stamp">Breaks here</span>
+        <div class="frame-body">
+          <span class="frame-n">04</span>
+          <h3>Village pharmacy</h3>
+          <p class="frame-where">No reliable fridge</p>
+          <p class="line cold"><b>Cold chain</b>Often not stocked at all. The patient travels to town, or goes without.</p>
+          <p class="line warm"><b>InStrong</b>Stocked where people live.</p>
+        </div>
+      </li>
+      <li class="frame">
+        <img src="assets/img/stop-patient.jpg" alt="A crowded street on a hot summer day" width="1024" height="520" loading="lazy">
+        <span class="stamp">Breaks here</span>
+        <div class="frame-body">
+          <span class="frame-n">05</span>
+          <h3>The patient</h3>
+          <p class="frame-where">A home in May</p>
+          <p class="line cold"><b>Cold chain</b>Degraded insulin means missed doses, then amputations and kidney failure.</p>
+          <p class="line warm"><b>InStrong</b>The dose that arrives, works.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="wrap">
+      <div class="film-progress" aria-hidden="true"><i id="filmBar"></i></div>
       <div class="journey-stats reveal">
         <div><strong>800M+</strong><span>people living with diabetes</span></div>
         <div><strong>1 every 10s</strong><span>a death from diabetes</span></div>
@@ -185,13 +229,23 @@
     </div>
   </section>
 
-  <!-- PLATFORM: the logic -->
-  <section class="section" id="platform">
+  <!-- QUOTE: their own best line, over a photograph -->
+  <section class="quote" id="science">
+    <img src="assets/img/lab-microscope.jpg" alt="" width="900" height="600" loading="lazy">
+    <div class="wrap quote-inner reveal">
+      <p class="eyebrow">ProteoStrong technology</p>
+      <blockquote>
+        <p>Think of formulation as <span class="hl">“building a nest”.</span></p>
+        <footer>Like a mother’s embrace, formulation protects the molecule from the harsh realities of the outside world: extreme temperatures, light, movement, time.</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section platform">
     <div class="wrap platform-grid">
       <div class="reveal">
-        <p class="eyebrow">ProteoStrong technology</p>
-        <h2 style="margin:14px 0 18px">A nest for the molecule.</h2>
-        <p class="lede">A biologic can take a decade to discover and still fail on the road. Formulation is the step that protects it from heat, light, movement and time. ProteoStrong is Lamark's patented formulation platform: one technology, applied to many life-saving proteins.</p>
+        <h2 style="margin-bottom:18px">One platform, many proteins.</h2>
+        <p class="lede">A biologic can take a decade to discover and still fail on the road. ProteoStrong is Lamark's patented formulation platform: one technology, applied to insulin and to other life-saving proteins.</p>
         <div class="benefits">
           <div class="benefit"><strong>Thermostable</strong><span>Stored and shipped without refrigeration</span></div>
           <div class="benefit"><strong>Longer shelf life</strong><span>Less waste in storage</span></div>
@@ -199,11 +253,9 @@
           <div class="benefit"><strong>Affordable</strong><span>No cold chain to pay for</span></div>
         </div>
       </div>
-      <div class="platform-media reveal">
-      <figure class="platform-photo"><img src="assets/img/lab-microscope.jpg" alt="Scientists working at a microscope" width="900" height="600" loading="lazy"></figure>
-      <div class="nest" aria-hidden="true">
+      <div class="nest reveal" aria-hidden="true">
         <svg viewBox="0 0 400 300" fill="none">
-          <text x="20" y="28" font-family="Inter Tight, sans-serif" font-size="13" fill="#55676a">Unprotected protein</text>
+          <text x="20" y="28" font-family="Inter Tight, sans-serif" font-size="13" fill="#5f5a52">Unprotected protein</text>
           <g stroke="#c2412d" stroke-width="2.5" stroke-linecap="round">
             <path d="M40 90c10-20 30 20 40 0s30 20 40 0" />
             <path d="M60 120c8-14 22 14 30 0s22 14 30 0" opacity=".6"/>
@@ -212,12 +264,12 @@
           <text x="20" y="160" font-family="Inter Tight, sans-serif" font-size="12" fill="#c2412d">Unfolds in heat, loses potency</text>
           <path d="M190 105h40" stroke="#454545" stroke-width="2" marker-end="url(#arr)"/>
           <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#454545"/></marker></defs>
-          <text x="250" y="28" font-family="Inter Tight, sans-serif" font-size="13" fill="#55676a">With ProteoStrong</text>
+          <text x="250" y="28" font-family="Inter Tight, sans-serif" font-size="13" fill="#5f5a52">With ProteoStrong</text>
           <circle cx="315" cy="105" r="62" fill="#fff4d9" stroke="#fdba2d" stroke-width="2.5"/>
-          <circle cx="315" cy="105" r="46" stroke="#d99a12" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <circle class="nest-ring" cx="315" cy="105" r="46" stroke="#d99a12" stroke-width="1.5" stroke-dasharray="4 5"/>
           <path d="M290 105c6-12 18 12 25 0s18 12 25 0" stroke="#454545" stroke-width="3" stroke-linecap="round"/>
           <text x="250" y="196" font-family="Inter Tight, sans-serif" font-size="12" fill="#2e7d4f">Holds its shape at 50°C</text>
-          <g font-family="Inter Tight, sans-serif" font-size="12" fill="#142225">
+          <g font-family="Inter Tight, sans-serif" font-size="12" fill="#1d1d1b">
             <rect x="20" y="230" width="110" height="44" rx="10" fill="#fbf8f1" stroke="#e8e1d3"/>
             <text x="34" y="257">Insulin</text>
             <rect x="145" y="230" width="110" height="44" rx="10" fill="#fbf8f1" stroke="#e8e1d3"/>
@@ -227,6 +279,59 @@
           </g>
         </svg>
       </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES: tall photo cards -->
+  <section class="section programmes dark" id="programmes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Programmes</p>
+        <h2>Three problems a fridge, a clinic or a needle makes worse.</h2>
+      </div>
+      <div class="progs">
+        <article class="prog diab reveal">
+          <img src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575" loading="lazy">
+          <div class="prog-body">
+            <p class="area">Diabetes</p>
+            <h3>InStrong</h3>
+            <p class="stat">800M+ <small>people living with diabetes</small></p>
+            <ul>
+              <li>Thermostable insulin, stored at room temperature</li>
+              <li>5× higher stability; sustained at 50°C</li>
+              <li>Built for places without cold storage or steady power</li>
+            </ul>
+            <a href="#pipeline">InStrong in the pipeline →</a>
+          </div>
+        </article>
+        <article class="prog eye reveal">
+          <img src="assets/img/eye.jpg" alt="Close-up of a human eye" width="768" height="1024" loading="lazy">
+          <div class="prog-body">
+            <p class="area">Wet AMD</p>
+            <h3>EyeStrong</h3>
+            <p class="stat">6–12 <small>eye injections a year today</small></p>
+            <ul>
+              <li>Novel biologic on a new pathway</li>
+              <li>Sustained release, aiming for far fewer injections</li>
+              <li>Promising efficacy in preclinical and ex-vivo models</li>
+            </ul>
+            <a href="#pipeline">EyeStrong in the pipeline →</a>
+          </div>
+        </article>
+        <article class="prog onc reveal">
+          <img src="assets/img/lab-tubes.jpg" alt="Test tubes in a laboratory rack" width="900" height="600" loading="lazy">
+          <div class="prog-body">
+            <p class="area">Lung cancer</p>
+            <h3>OncoStrong</h3>
+            <p class="stat">18.7% <small>of all cancer deaths</small></p>
+            <ul>
+              <li>Inhaled powder, minimally invasive</li>
+              <li>Low-toxicity formulation</li>
+              <li>One platform, usable for other cancers</li>
+            </ul>
+            <a href="#pipeline">OncoStrong in the pipeline →</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -240,21 +345,21 @@
         <p class="lede">Every candidate is built on ProteoStrong. Filter by disease to see where each one stands.</p>
       </div>
       <div class="pipe-filters" role="group" aria-label="Filter pipeline">
-        <button class="chip" aria-pressed="true" data-filter="all">All</button>
-        <button class="chip" aria-pressed="false" data-filter="diab">Diabetes</button>
-        <button class="chip" aria-pressed="false" data-filter="eye">Ophthalmology</button>
-        <button class="chip" aria-pressed="false" data-filter="onc">Lung cancer</button>
+        <button class="chip-btn" aria-pressed="true" data-filter="all">All</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="diab">Diabetes</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="eye">Ophthalmology</button>
+        <button class="chip-btn" aria-pressed="false" data-filter="onc">Lung cancer</button>
       </div>
       <table class="pipe-table reveal">
         <thead>
           <tr>
             <th scope="col">Candidate</th>
-            <th scope="col" class="stages"><div style="position:relative;height:18px">
-              <span style="position:absolute;left:0">R&amp;D</span>
-              <span style="position:absolute;left:17%;transform:translateX(-50%)">PoC</span>
-              <span style="position:absolute;left:34%;transform:translateX(-50%)">Working TPP</span>
-              <span style="position:absolute;left:61%;transform:translateX(-50%)">IND-enabling</span>
-              <span style="position:absolute;right:0">Clinical Ph 1/2</span>
+            <th scope="col" class="stages"><div class="stage-labels">
+              <span style="left:0">R&amp;D</span>
+              <span style="left:17%;transform:translateX(-50%)">PoC</span>
+              <span style="left:34%;transform:translateX(-50%)">Working TPP</span>
+              <span style="left:61%;transform:translateX(-50%)">IND-enabling</span>
+              <span style="right:0">Clinical Ph 1/2</span>
             </div></th>
           </tr>
         </thead>
@@ -289,79 +394,35 @@
     </div>
   </section>
 
-  <!-- PROGRAMMES -->
-  <section class="section" id="programmes">
+  <!-- TEAM: faces first -->
+  <section class="section team" id="team">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Programmes</p>
-        <h2>Three problems a fridge, a clinic or a needle makes worse.</h2>
-      </div>
-      <div class="progs">
-        <article class="prog diab reveal">
-          <img class="prog-img" src="assets/img/insulin-vial.jpg" alt="A vial of insulin" width="1200" height="674" loading="lazy">
-          <p class="area">Diabetes</p>
-          <h3>InStrong</h3>
-          <p class="stat">800M+</p>
-          <p class="stat-l">people living with diabetes</p>
-          <ul>
-            <li>Thermostable insulin, stored at room temperature</li>
-            <li>5× higher stability; sustained at 50°C</li>
-            <li>Built for places without cold storage or steady power</li>
-          </ul>
-          <a href="#pipeline">See InStrong in the pipeline →</a>
-        </article>
-        <article class="prog eye reveal">
-          <img class="prog-img" src="assets/img/eye.jpg" alt="Close-up of a human eye" width="768" height="1024" loading="lazy">
-          <p class="area">Wet AMD</p>
-          <h3>EyeStrong</h3>
-          <p class="stat">6–12</p>
-          <p class="stat-l">eye injections a year for today's patients</p>
-          <ul>
-            <li>Novel biologic on a new pathway</li>
-            <li>Sustained release, aiming for far fewer injections</li>
-            <li>Promising efficacy in preclinical and ex-vivo models</li>
-          </ul>
-          <a href="#pipeline">See EyeStrong in the pipeline →</a>
-        </article>
-        <article class="prog onc reveal">
-          <img class="prog-img" src="assets/img/lab-tubes.jpg" alt="Test tubes in a laboratory rack" width="900" height="600" loading="lazy">
-          <p class="area">Lung cancer</p>
-          <h3>OncoStrong</h3>
-          <p class="stat">18.7%</p>
-          <p class="stat-l">of all cancer deaths are lung cancer</p>
-          <ul>
-            <li>Inhaled powder, minimally invasive</li>
-            <li>Low-toxicity formulation</li>
-            <li>One platform, usable for other cancers</li>
-          </ul>
-          <a href="#pipeline">See OncoStrong in the pipeline →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM + JOURNEY -->
-  <section class="section" id="team" style="padding-top:0">
-    <div class="wrap">
-      <figure class="team-photo reveal">
-        <img src="assets/img/team-group.jpg" alt="The Lamark team with Symphony Technologies at a biostatistics workshop" width="1187" height="875" loading="lazy">
-        <figcaption>Lamark and Symphony Technologies at the biostatistics workshop.</figcaption>
-      </figure>
-    </div>
-    <div class="wrap team-grid">
-      <div class="reveal">
         <p class="eyebrow">Team</p>
-        <h2 style="margin:14px 0 18px">Scientists from India, Europe and the United States.</h2>
-        <p class="lede" style="margin-bottom:24px">To care for medicines, so they can care for us.</p>
-        <div class="people">
-          <div class="person"><img class="avatar" src="assets/img/vaibhav.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>Vaibhav Bhatia, PhD</strong><span>Founder and CEO</span></div></div>
-          <div class="person"><img class="avatar" src="assets/img/luis.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>Luis A. D. Cienfuegos, PhD</strong><span>Director, R&amp;D</span></div></div>
-          <div class="person"><img class="avatar" src="assets/img/jose.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>José A. Gavira, PhD</strong><span>Chief Scientific Officer</span></div></div>
-        </div>
+        <h2>Scientists from India, Europe and the United States.</h2>
+        <p class="lede">To care for medicines, so they can care for us.</p>
       </div>
-      <div class="reveal">
-        <p class="eyebrow" style="margin-bottom:24px">Milestones</p>
-        <ol class="timeline">
+      <div class="faces">
+        <figure class="face reveal">
+          <img src="assets/img/vaibhav.jpg" alt="Vaibhav Bhatia" width="500" height="534" loading="lazy">
+          <figcaption><strong>Vaibhav Bhatia, PhD</strong><span>Founder and CEO</span></figcaption>
+        </figure>
+        <figure class="face reveal">
+          <img src="assets/img/luis.jpg" alt="Luis A. D. Cienfuegos" width="500" height="500" loading="lazy">
+          <figcaption><strong>Luis A. D. Cienfuegos, PhD</strong><span>Director, R&amp;D</span></figcaption>
+        </figure>
+        <figure class="face reveal">
+          <img src="assets/img/jose.jpg" alt="José A. Gavira" width="500" height="498" loading="lazy">
+          <figcaption><strong>José A. Gavira, PhD</strong><span>Chief Scientific Officer</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="team-row">
+        <figure class="team-photo reveal">
+          <img src="assets/img/team-group.jpg" alt="The Lamark team with Symphony Technologies at a biostatistics workshop" width="1187" height="876" loading="lazy">
+          <figcaption>With Symphony Technologies at the biostatistics workshop</figcaption>
+        </figure>
+        <ol class="timeline reveal">
           <li><b>2018</b><span>Lamark Biotech founded in India</span></li>
           <li><b>2019</b><span>Patent: thermostable protein formulation technology</span></li>
           <li><b>2021</b><span>Established at Genopole, Paris</span></li>
@@ -373,30 +434,36 @@
     </div>
   </section>
 
-  <!-- NEWS -->
-  <section class="section pipeline" id="news">
+  <!-- GALLERY: news told in photographs, opens full size -->
+  <section class="section gallery-sec dark" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">News</p>
+        <p class="eyebrow">Lamark in pictures</p>
         <h2>Out in the field.</h2>
+        <p class="lede">Tap any photo to see it full size.</p>
       </div>
-      <div class="news reveal">
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-malvern.jpg" alt="Lamark and Malvern at an exhibition stand" width="800" height="729" loading="lazy"><div><small>Partnership</small><p>Working with Malvern on biologics and nanoformulations</p></div></a>
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-csir.jpg" alt="Visitors at the Lamark stand at the CSIR conclave" width="800" height="729" loading="lazy"><div><small>Event</small><p>Showing InStrong at the CSIR conclave</p></div></a>
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-goa.jpg" alt="Panel on stage at the biosimilar workshop in Goa" width="800" height="729" loading="lazy"><div><small>Conference</small><p>On the biosimilar product development workshop in Goa</p></div></a>
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-ikmc.jpg" alt="The Lamark team receiving an award at IKMC 2019" width="600" height="600" loading="lazy"><div><small>Award</small><p>One of the best three biopharma startups at IKMC 2019</p></div></a>
+      <div class="gallery reveal">
+        <button type="button" class="g g-big" data-cap="Malvern event at Venture Center, Pune"><img src="assets/img/venture-group.jpg" alt="A large group outside Venture Center, Pune" width="1200" height="1094" loading="lazy"><span>Malvern event, Venture Center</span></button>
+        <button type="button" class="g" data-cap="Partnering with Malvern to explore innovation in biologics and nanoformulations"><img src="assets/img/news-malvern.jpg" alt="Lamark and Malvern at an exhibition stand" width="800" height="728" loading="lazy"><span>Partnership with Malvern</span></button>
+        <button type="button" class="g" data-cap="At the CSIR conclave"><img src="assets/img/news-csir.jpg" alt="Visitors at the Lamark stand at the CSIR conclave" width="800" height="728" loading="lazy"><span>CSIR conclave</span></button>
+        <button type="button" class="g g-tall" data-cap="Named one of the best three startups in biopharma at IKMC 2019"><img src="assets/img/news-ikmc.jpg" alt="The Lamark team receiving an award at IKMC 2019" width="500" height="500" loading="lazy"><span>Award, IKMC 2019</span></button>
+        <button type="button" class="g" data-cap="Biopharmaceutical product development workshop, Goa"><img src="assets/img/news-goa.jpg" alt="Panel on stage at the workshop in Goa" width="800" height="728" loading="lazy"><span>Biosimilar workshop, Goa</span></button>
+        <button type="button" class="g" data-cap="Biostatistics workshop with Symphony Technologies"><img src="assets/img/news-biostats.jpg" alt="A talk at the biostatistics workshop" width="900" height="820" loading="lazy"><span>Biostatistics workshop</span></button>
+        <button type="button" class="g g-wide" data-cap="Bengaluru Tech Summit"><img src="assets/img/news-bts-talk.jpg" alt="Conversation at the Lamark stand at Bengaluru Tech Summit" width="900" height="820" loading="lazy"><span>Bengaluru Tech Summit</span></button>
+        <button type="button" class="g" data-cap="At the IKP Knowledge Park pavilion, Bengaluru Tech Summit 2022"><img src="assets/img/news-bts.jpg" alt="The Lamark Biotech stand at Bengaluru Tech Summit 2022" width="500" height="500" loading="lazy"><span>BTS 2022</span></button>
       </div>
     </div>
   </section>
 
-  <!-- PHOTO BAND -->
-  <section class="band" aria-label="Lamark at work">
-    <img src="assets/img/venture-group.jpg" alt="A large group of scientists and guests outside Venture Center, Pune" width="1280" height="1166" loading="lazy">
-    <div class="band-text wrap">
-      <p class="eyebrow">Pune and Paris</p>
-      <p class="band-line">Come and see the work, in Pune or in Paris.</p>
-    </div>
-  </section>
+  <dialog class="lightbox" id="lightbox" aria-label="Photo">
+    <figure>
+      <img id="lbImg" src="assets/img/venture-group.jpg" alt="">
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button type="button" class="round lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button type="button" class="round lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button type="button" class="round lb-close" id="lbClose" aria-label="Close photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </dialog>
 
   <!-- PARTNER: one door, four kinds of visitor -->
   <section class="section partner" id="partner">
@@ -412,8 +479,11 @@
           <button type="button" aria-pressed="false" data-who="talent">Scientist looking to join</button>
         </div>
         <div class="who-pitch" aria-live="polite">
-          <strong id="whoTitle">License ProteoStrong, or co-develop</strong>
-          <p id="whoText">We partner with pharmaceutical companies for API manufacturing, clinical trials and market expansion. Our technology is already applied to insulin and four other proteins.</p>
+          <img id="whoImg" src="assets/img/news-malvern.jpg" alt="" width="800" height="728" loading="lazy">
+          <div>
+            <strong id="whoTitle">License ProteoStrong, or co-develop</strong>
+            <p id="whoText">We partner with pharmaceutical companies for API manufacturing, clinical trials and market expansion. Our technology is already applied to insulin and four other proteins.</p>
+          </div>
         </div>
         <div class="contact-lines">
           <span><strong>Email</strong> · <a href="mailto:info@lamarkbiotech.com">info@lamarkbiotech.com</a></span>
@@ -455,7 +525,7 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="#platform">Science</a></li>
+          <li><a href="#science">Science</a></li>
           <li><a href="#pipeline">Pipeline</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#partner">Careers</a></li>
@@ -471,7 +541,7 @@
         </ul>
       </div>
     </div>
-    <p class="credits">Photos: Lamark Biotech. Journey photos from Flickr under CC BY 2.0: truck stop by sLENGfJES, primary health centre by RubyGoes, pharmacy by flowcomm, street by beontheroad.com. Insulin vial (John Campbell) and eye (mnsc) are CC0.</p>
+    <p class="credits">Photos: Lamark Biotech. Journey photos from Flickr under CC BY 2.0: truck stop by sLENGfJES, primary health centre by RubyGoes, pharmacy by flowcomm, street by beontheroad.com. Insulin pen (jlcampbell104) and eye (mnsc) are CC0.</p>
     <p class="disclaimer">This website may contain forward-looking statements about Lamark's research, development and product candidates. Actual results may differ materially due to risks and uncertainties. InStrong, EyeStrong and OncoStrong are investigational and not approved for patient use. · Privacy · Terms · Legal disclaimer</p>
   </div>
 </footer>

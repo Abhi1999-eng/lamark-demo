@@ -1,32 +1,48 @@
 // Lamark concept homepage. Plain JavaScript, no dependencies.
 (function () {
   'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Concept note
   var concept = document.getElementById('concept');
-  document.getElementById('conceptClose').addEventListener('click', function () {
-    concept.remove();
-  });
+  document.getElementById('conceptClose').addEventListener('click', function () { concept.remove(); });
 
   // Header: border on scroll, mobile menu
   var header = document.querySelector('.site-header');
   var menuBtn = document.getElementById('menuBtn');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
   menuBtn.addEventListener('click', function () {
     var open = header.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
   document.querySelectorAll('#navLinks a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      header.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    });
+    a.addEventListener('click', function () { header.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
   });
 
-  // Thermometer
+  // Scroll: header border, hero tiles drift, quote photo drifts. One rAF per frame.
+  var tiles = document.querySelectorAll('.tile[data-depth]');
+  var quote = document.querySelector('.quote');
+  var quoteImg = quote && quote.querySelector('img');
+  var ticking = false;
+  function onScroll() {
+    var y = window.scrollY;
+    header.classList.toggle('scrolled', y > 8);
+    if (!reduce) {
+      if (y < 1200 && innerWidth > 960) tiles.forEach(function (t) { t.style.setProperty('--py', (y * Number(t.dataset.depth)).toFixed(1) + 'px'); });
+      if (quoteImg) {
+        var r = quote.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight) {
+          var p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+          quoteImg.style.setProperty('--qy', (p * -60).toFixed(1) + 'px');
+        }
+      }
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // Heat: the slider drives the photo's colour and the two vials
   var places = [
     [4, 'Inside a working fridge'],
     [9, 'A fridge during a power cut'],
@@ -38,6 +54,7 @@
     [47, 'Rajasthan at peak summer'],
     [50, 'The temperature Lamark tested at']
   ];
+  var heat = document.getElementById('heat');
   var range = document.getElementById('tempRange');
   var tempVal = document.getElementById('tempVal');
   var tempPlace = document.getElementById('tempPlace');
@@ -52,6 +69,7 @@
     var t = Number(range.value);
     tempVal.textContent = t;
     tempPlace.textContent = placeFor(t);
+    heat.style.setProperty('--heat', ((t - 4) / 46).toFixed(3));
     var inRange = t <= 8;
     vialStd.className = 'vial ' + (inRange ? 'ok' : 'bad');
     stdState.textContent = inRange ? 'Within storage range' : 'Outside storage range';
@@ -59,83 +77,27 @@
   range.addEventListener('input', updateTemp);
   updateTemp();
 
-  // Journey of a vial
-  var stops = [
-    {
-      img: 'assets/img/lab-bench.jpg', alt: 'A pharmaceutical laboratory bench', cap: 'Stop 1 · Where the vial is made',
-      ct: 'Fine, for now',
-      cx: 'The vial leaves at 2–8°C. Every stop after this one has to keep it there.',
-      wt: 'No fridge needed from here',
-      wx: 'A thermostable formulation can be stored and shipped at room temperature, even in hotter climates.'
-    },
-    {
-      img: 'assets/img/stop-highway.jpg', alt: 'Trucks parked at a highway stop in India at night', cap: 'Stop 2 · Two days on the highway',
-      ct: 'Refrigerated truck, or none',
-      cx: 'Reefer trucks cost more and are scarce outside big cities. A breakdown or a long wait at a checkpoint is enough.',
-      wt: 'Any truck will do',
-      wx: 'Ordinary transport, ordinary cost. Lamark expects removing the cold chain to bring costs down by around 20%.'
-    },
-    {
-      img: 'assets/img/stop-store.jpg', alt: 'A primary health centre in India', cap: 'Stop 3 · The district health centre',
-      ct: 'One power cut away',
-      cx: 'Regions in India and Africa lack cold-chain infrastructure and uninterrupted power. Stock that warms up quietly loses efficacy.',
-      wt: 'The power cut stops mattering',
-      wx: 'Stock on a shelf stays usable through outages and summer heat.'
-    },
-    {
-      img: 'assets/img/stop-pharmacy.jpg', alt: 'A small medical store in India', cap: 'Stop 4 · The village medical store',
-      ct: 'Often not stocked at all',
-      cx: 'A pharmacy without a reliable fridge cannot keep insulin, so the patient travels to the nearest town, or goes without.',
-      wt: 'Stocked where people live',
-      wx: 'If it needs no fridge, the village pharmacy can carry it. Zero days of waiting.'
-    },
-    {
-      img: 'assets/img/stop-patient.jpg', alt: 'A crowded Indian street on a hot summer day', cap: 'Stop 5 · Home, in May',
-      ct: 'A missed dose',
-      cx: 'Insulin that degrades without refrigeration leads to missed doses, and missed doses lead to amputations and kidney failure.',
-      wt: 'The dose that arrives, works',
-      wx: 'The point of all of it: insulin that is still potent on the day it is used. WHO targets 80% access; this is how remote areas reach it.'
-    }
-  ];
-  var stopBtns = document.querySelectorAll('.stop');
-  var jpImg = document.getElementById('jpImg');
-  var jpCap = document.getElementById('jpCap');
-  // Fetch the other four photos early so switching stops never flashes empty
-  stops.forEach(function (st) { var im = new Image(); im.src = st.img; });
-  var jp = {
-    ct: document.getElementById('jpColdTitle'), cx: document.getElementById('jpColdText'),
-    wt: document.getElementById('jpWarmTitle'), wx: document.getElementById('jpWarmText')
-  };
-  function showStop(i) {
-    stopBtns.forEach(function (b, j) { b.setAttribute('aria-selected', String(i === j)); b.tabIndex = i === j ? 0 : -1; });
-    Object.keys(jp).forEach(function (k) { jp[k].textContent = stops[i][k]; });
-    jpImg.src = stops[i].img; jpImg.alt = stops[i].alt; jpCap.textContent = stops[i].cap;
+  // Filmstrip: arrows, progress bar
+  var film = document.getElementById('film');
+  var bar = document.getElementById('filmBar');
+  var prev = document.getElementById('filmPrev');
+  var next = document.getElementById('filmNext');
+  function step() { var f = film.querySelector('.frame'); return f ? f.getBoundingClientRect().width + 20 : 400; }
+  function updateFilm() {
+    var max = film.scrollWidth - film.clientWidth;
+    var p = max > 0 ? film.scrollLeft / max : 1;
+    bar.style.width = (20 + p * 80).toFixed(1) + '%';
+    prev.disabled = film.scrollLeft < 4;
+    next.disabled = film.scrollLeft > max - 4;
   }
-  stopBtns.forEach(function (b, i) {
-    b.addEventListener('click', function () { showStop(i); stopAuto(); });
-    b.addEventListener('keydown', function (e) {
-      var n = null;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % stops.length;
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + stops.length) % stops.length;
-      if (n !== null) { e.preventDefault(); showStop(n); stopBtns[n].focus(); stopAuto(); }
-    });
-  });
-
-  // Walk the journey once on its own when it scrolls into view, unless reduced motion
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var autoTimer = null, autoStep = 0;
-  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
-  function startAuto() {
-    if (reduce || autoTimer) return;
-    autoTimer = setInterval(function () {
-      autoStep += 1;
-      if (autoStep >= stops.length) return stopAuto();
-      showStop(autoStep);
-    }, 2600);
-  }
+  prev.addEventListener('click', function () { film.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+  next.addEventListener('click', function () { film.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+  film.addEventListener('scroll', updateFilm, { passive: true });
+  window.addEventListener('resize', updateFilm);
+  updateFilm();
 
   // Pipeline filter
-  var chips = document.querySelectorAll('.chip');
+  var chips = document.querySelectorAll('.chip-btn');
   var rows = document.querySelectorAll('.pipe-row');
   chips.forEach(function (c) {
     c.addEventListener('click', function () {
@@ -145,19 +107,50 @@
     });
   });
 
-  // Partner selector
+  // Gallery lightbox
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.g'));
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var current = 0, opener = null;
+  function show(i) {
+    current = (i + shots.length) % shots.length;
+    var img = shots[current].querySelector('img');
+    lbImg.src = img.src; lbImg.alt = img.alt;
+    lbCap.textContent = shots[current].dataset.cap;
+  }
+  shots.forEach(function (s, i) {
+    s.addEventListener('click', function () {
+      opener = s; show(i);
+      if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
+    });
+  });
+  function closeLb() { if (lb.open) lb.close(); }
+  lb.addEventListener('close', function () { if (opener) opener.focus(); });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { show(current + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  lb.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') show(current + 1);
+    if (e.key === 'ArrowLeft') show(current - 1);
+  });
+
+  // Partner selector: each visitor gets a pitch and a photo
   var who = {
-    pharma: ['License ProteoStrong, or co-develop', 'We partner with pharmaceutical companies for API manufacturing, clinical trials and market expansion. Our technology is already applied to insulin and four other proteins.'],
-    investor: ['Back a platform, not a single molecule', 'One patented formulation technology, three programmes, BIRAC-backed, with a stated goal of InStrong in every pharmacy by 2030.'],
-    clinical: ['Run the studies that get it to patients', 'We are looking for hospitals and clinical partners as our candidates move towards IND-enabling and Phase 1/2 work.'],
-    talent: ['Join a small team with a large mission', 'Research associates, regulatory officers and scientists. Labs in Pune and Paris, colleagues across India, Europe and the US.']
+    pharma: ['License ProteoStrong, or co-develop', 'We partner with pharmaceutical companies for API manufacturing, clinical trials and market expansion. Our technology is already applied to insulin and four other proteins.', 'assets/img/news-malvern.jpg'],
+    investor: ['Back a platform, not a single molecule', 'One patented formulation technology, three programmes, BIRAC-backed, with a stated goal of InStrong in every pharmacy by 2030.', 'assets/img/news-ikmc.jpg'],
+    clinical: ['Run the studies that get it to patients', 'We are looking for hospitals and clinical partners as our candidates move towards IND-enabling and Phase 1/2 work.', 'assets/img/lab-tubes.jpg'],
+    talent: ['Join a small team with a large mission', 'Research associates, regulatory officers and scientists. Labs in Pune and Paris, colleagues across India, Europe and the US.', 'assets/img/team-group.jpg']
   };
   var whoBtns = document.querySelectorAll('[data-who]');
   var topic = document.getElementById('fTopic');
+  var whoImg = document.getElementById('whoImg');
   function setWho(key) {
     whoBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.who === key)); });
     document.getElementById('whoTitle').textContent = who[key][0];
     document.getElementById('whoText').textContent = who[key][1];
+    whoImg.src = who[key][2];
     topic.value = key;
   }
   whoBtns.forEach(function (b) { b.addEventListener('click', function () { setWho(b.dataset.who); }); });
@@ -168,7 +161,7 @@
   function check(input) {
     var ok = input.checkValidity();
     input.setAttribute('aria-invalid', String(!ok));
-    input.style.borderColor = ok ? '' : 'var(--coral)';
+    input.style.borderColor = ok ? '' : 'var(--bad)';
     return ok;
   }
   form.querySelectorAll('[required]').forEach(function (i) {
@@ -183,16 +176,15 @@
     form.innerHTML = '<div class="form-done"><h3>Thanks, ' + name.replace(/[<>&"]/g, '') + '.</h3><p style="color:var(--muted)">This is a demo, so nothing was sent. On the live site this reaches the right person at Lamark the same day.</p></div>';
   });
 
-  // Reveal on scroll, start the journey, grow the pipeline bars
+  // Reveal on scroll, grow the pipeline bars
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         en.target.classList.add('in-view');
-        if (en.target.classList.contains('journey-track')) startAuto();
         io.unobserve(en.target);
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
