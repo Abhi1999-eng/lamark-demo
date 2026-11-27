@@ -67,6 +67,7 @@
 
   <!-- HERO: say what Lamark does in the first screen -->
   <section class="hero dark">
+    <div class="hero-bg" aria-hidden="true"><img src="assets/img/hero.jpg" alt="" width="900" height="600" fetchpriority="high"></div>
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Thermostable biologics · India and France</p>
@@ -157,6 +158,11 @@
       </div>
 
       <div class="journey-panel" id="journeyPanel" role="tabpanel" aria-live="polite">
+        <figure class="jp-photo">
+          <img id="jpImg" src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory bench" width="890" height="500">
+          <figcaption id="jpCap">Stop 1 · Where the vial is made</figcaption>
+        </figure>
+        <div class="jp-cards">
         <div class="jp-card cold">
           <span class="tag">With a cold chain</span>
           <h3 id="jpColdTitle">Fine, for now</h3>
@@ -166,6 +172,7 @@
           <span class="tag">With InStrong</span>
           <h3 id="jpWarmTitle">No fridge needed from here</h3>
           <p id="jpWarmText">A thermostable formulation can be stored and shipped at room temperature, even in hotter climates.</p>
+        </div>
         </div>
       </div>
 
@@ -192,7 +199,9 @@
           <div class="benefit"><strong>Affordable</strong><span>No cold chain to pay for</span></div>
         </div>
       </div>
-      <div class="nest reveal" aria-hidden="true">
+      <div class="platform-media reveal">
+      <figure class="platform-photo"><img src="assets/img/lab-microscope.jpg" alt="Scientists working at a microscope" width="900" height="600" loading="lazy"></figure>
+      <div class="nest" aria-hidden="true">
         <svg viewBox="0 0 400 300" fill="none">
           <text x="20" y="28" font-family="Inter Tight, sans-serif" font-size="13" fill="#55676a">Unprotected protein</text>
           <g stroke="#c2412d" stroke-width="2.5" stroke-linecap="round">
@@ -217,6 +226,7 @@
             <text x="284" y="257">4 more proteins</text>
           </g>
         </svg>
+      </div>
       </div>
     </div>
   </section>
@@ -288,6 +298,7 @@
       </div>
       <div class="progs">
         <article class="prog diab reveal">
+          <img class="prog-img" src="assets/img/insulin-vial.jpg" alt="A vial of insulin" width="1200" height="674" loading="lazy">
           <p class="area">Diabetes</p>
           <h3>InStrong</h3>
           <p class="stat">800M+</p>
@@ -300,6 +311,7 @@
           <a href="#pipeline">See InStrong in the pipeline →</a>
         </article>
         <article class="prog eye reveal">
+          <img class="prog-img" src="assets/img/eye.jpg" alt="Close-up of a human eye" width="768" height="1024" loading="lazy">
           <p class="area">Wet AMD</p>
           <h3>EyeStrong</h3>
           <p class="stat">6–12</p>
@@ -312,6 +324,7 @@
           <a href="#pipeline">See EyeStrong in the pipeline →</a>
         </article>
         <article class="prog onc reveal">
+          <img class="prog-img" src="assets/img/lab-tubes.jpg" alt="Test tubes in a laboratory rack" width="900" height="600" loading="lazy">
           <p class="area">Lung cancer</p>
           <h3>OncoStrong</h3>
           <p class="stat">18.7%</p>
@@ -329,15 +342,21 @@
 
   <!-- TEAM + JOURNEY -->
   <section class="section" id="team" style="padding-top:0">
+    <div class="wrap">
+      <figure class="team-photo reveal">
+        <img src="assets/img/team-group.jpg" alt="The Lamark team with Symphony Technologies at a biostatistics workshop" width="1187" height="875" loading="lazy">
+        <figcaption>Lamark and Symphony Technologies at the biostatistics workshop.</figcaption>
+      </figure>
+    </div>
     <div class="wrap team-grid">
       <div class="reveal">
         <p class="eyebrow">Team</p>
         <h2 style="margin:14px 0 18px">Scientists from India, Europe and the United States.</h2>
         <p class="lede" style="margin-bottom:24px">To care for medicines, so they can care for us.</p>
         <div class="people">
-          <div class="person"><span class="avatar">VB</span><div><strong>Vaibhav Bhatia, PhD</strong><span>Founder and CEO</span></div></div>
-          <div class="person"><span class="avatar">LC</span><div><strong>Luis A. D. Cienfuegos, PhD</strong><span>Director, R&amp;D</span></div></div>
-          <div class="person"><span class="avatar">JG</span><div><strong>José A. Gavira, PhD</strong><span>Chief Scientific Officer</span></div></div>
+          <div class="person"><img class="avatar" src="assets/img/vaibhav.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>Vaibhav Bhatia, PhD</strong><span>Founder and CEO</span></div></div>
+          <div class="person"><img class="avatar" src="assets/img/luis.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>Luis A. D. Cienfuegos, PhD</strong><span>Director, R&amp;D</span></div></div>
+          <div class="person"><img class="avatar" src="assets/img/jose.jpg" alt="" width="96" height="96" loading="lazy"><div><strong>José A. Gavira, PhD</strong><span>Chief Scientific Officer</span></div></div>
         </div>
       </div>
       <div class="reveal">
@@ -359,13 +378,23 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">News</p>
-        <h2>Recent work.</h2>
+        <h2>Out in the field.</h2>
       </div>
       <div class="news reveal">
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><small>Grant</small><p>Selected for BIRAC BIG ignition seed funding</p></a>
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><small>Partnership</small><p>Working with Malvern on biologics and nanoformulations</p></a>
-        <a href="https://lamarkbiotech.com/blogs-and-updates/"><small>Workshop</small><p>Biostatistics workshop with Symphony Technologies</p></a>
+        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-malvern.jpg" alt="Lamark and Malvern at an exhibition stand" width="800" height="729" loading="lazy"><div><small>Partnership</small><p>Working with Malvern on biologics and nanoformulations</p></div></a>
+        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-csir.jpg" alt="Visitors at the Lamark stand at the CSIR conclave" width="800" height="729" loading="lazy"><div><small>Event</small><p>Showing InStrong at the CSIR conclave</p></div></a>
+        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-goa.jpg" alt="Panel on stage at the biosimilar workshop in Goa" width="800" height="729" loading="lazy"><div><small>Conference</small><p>On the biosimilar product development workshop in Goa</p></div></a>
+        <a href="https://lamarkbiotech.com/blogs-and-updates/"><img src="assets/img/news-ikmc.jpg" alt="The Lamark team receiving an award at IKMC 2019" width="600" height="600" loading="lazy"><div><small>Award</small><p>One of the best three biopharma startups at IKMC 2019</p></div></a>
       </div>
+    </div>
+  </section>
+
+  <!-- PHOTO BAND -->
+  <section class="band" aria-label="Lamark at work">
+    <img src="assets/img/venture-group.jpg" alt="A large group of scientists and guests outside Venture Center, Pune" width="1280" height="1166" loading="lazy">
+    <div class="band-text wrap">
+      <p class="eyebrow">Pune and Paris</p>
+      <p class="band-line">Come and see the work, in Pune or in Paris.</p>
     </div>
   </section>
 
@@ -442,6 +471,7 @@
         </ul>
       </div>
     </div>
+    <p class="credits">Photos: Lamark Biotech. Journey photos from Flickr under CC BY 2.0: truck stop by sLENGfJES, primary health centre by RubyGoes, pharmacy by flowcomm, street by beontheroad.com. Insulin vial (John Campbell) and eye (mnsc) are CC0.</p>
     <p class="disclaimer">This website may contain forward-looking statements about Lamark's research, development and product candidates. Actual results may differ materially due to risks and uncertainties. InStrong, EyeStrong and OncoStrong are investigational and not approved for patient use. · Privacy · Terms · Legal disclaimer</p>
   </div>
 </footer>

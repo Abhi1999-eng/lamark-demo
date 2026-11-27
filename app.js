@@ -62,30 +62,35 @@
   // Journey of a vial
   var stops = [
     {
+      img: 'assets/img/lab-bench.jpg', alt: 'A pharmaceutical laboratory bench', cap: 'Stop 1 · Where the vial is made',
       ct: 'Fine, for now',
       cx: 'The vial leaves at 2–8°C. Every stop after this one has to keep it there.',
       wt: 'No fridge needed from here',
       wx: 'A thermostable formulation can be stored and shipped at room temperature, even in hotter climates.'
     },
     {
+      img: 'assets/img/stop-highway.jpg', alt: 'Trucks parked at a highway stop in India at night', cap: 'Stop 2 · Two days on the highway',
       ct: 'Refrigerated truck, or none',
       cx: 'Reefer trucks cost more and are scarce outside big cities. A breakdown or a long wait at a checkpoint is enough.',
       wt: 'Any truck will do',
       wx: 'Ordinary transport, ordinary cost. Lamark expects removing the cold chain to bring costs down by around 20%.'
     },
     {
+      img: 'assets/img/stop-store.jpg', alt: 'A primary health centre in India', cap: 'Stop 3 · The district health centre',
       ct: 'One power cut away',
       cx: 'Regions in India and Africa lack cold-chain infrastructure and uninterrupted power. Stock that warms up quietly loses efficacy.',
       wt: 'The power cut stops mattering',
       wx: 'Stock on a shelf stays usable through outages and summer heat.'
     },
     {
+      img: 'assets/img/stop-pharmacy.jpg', alt: 'A small medical store in India', cap: 'Stop 4 · The village medical store',
       ct: 'Often not stocked at all',
       cx: 'A pharmacy without a reliable fridge cannot keep insulin, so the patient travels to the nearest town, or goes without.',
       wt: 'Stocked where people live',
       wx: 'If it needs no fridge, the village pharmacy can carry it. Zero days of waiting.'
     },
     {
+      img: 'assets/img/stop-patient.jpg', alt: 'A crowded Indian street on a hot summer day', cap: 'Stop 5 · Home, in May',
       ct: 'A missed dose',
       cx: 'Insulin that degrades without refrigeration leads to missed doses, and missed doses lead to amputations and kidney failure.',
       wt: 'The dose that arrives, works',
@@ -93,6 +98,10 @@
     }
   ];
   var stopBtns = document.querySelectorAll('.stop');
+  var jpImg = document.getElementById('jpImg');
+  var jpCap = document.getElementById('jpCap');
+  // Fetch the other four photos early so switching stops never flashes empty
+  stops.forEach(function (st) { var im = new Image(); im.src = st.img; });
   var jp = {
     ct: document.getElementById('jpColdTitle'), cx: document.getElementById('jpColdText'),
     wt: document.getElementById('jpWarmTitle'), wx: document.getElementById('jpWarmText')
@@ -100,6 +109,7 @@
   function showStop(i) {
     stopBtns.forEach(function (b, j) { b.setAttribute('aria-selected', String(i === j)); b.tabIndex = i === j ? 0 : -1; });
     Object.keys(jp).forEach(function (k) { jp[k].textContent = stops[i][k]; });
+    jpImg.src = stops[i].img; jpImg.alt = stops[i].alt; jpCap.textContent = stops[i].cap;
   }
   stopBtns.forEach(function (b, i) {
     b.addEventListener('click', function () { showStop(i); stopAuto(); });
