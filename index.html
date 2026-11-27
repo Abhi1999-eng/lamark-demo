@@ -45,7 +45,7 @@
 
 <header class="site-header" id="top">
   <div class="wrap nav">
-    <a class="logo" href="#top"><img src="assets/lamark-logo.png" width="640" height="277" alt="Lamark Biotech"></a>
+    <a class="logo" href="#top"><img decoding="async" src="assets/lamark-logo.png" width="640" height="277" alt="Lamark Biotech"></a>
     <nav aria-label="Main">
       <ul class="nav-links" id="navLinks">
         <li><a href="#heat">The problem</a></li>
@@ -66,7 +66,7 @@
 <main>
 
   <!-- HERO: the headline beside a contact sheet of the vial's journey -->
-  <section class="hero dark">
+  <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Thermostable biologics · India and France</p>
@@ -85,20 +85,20 @@
       </div>
 
       <div class="collage" aria-label="Where insulin travels">
-        <figure class="tile t1" data-depth="0.06">
-          <img src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory" width="890" height="500" fetchpriority="high">
+        <figure class="tile t1">
+          <img decoding="async" src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory" width="890" height="500" fetchpriority="high">
           <figcaption><span class="chip cold">2–8°C</span>Made in a cold room</figcaption>
         </figure>
-        <figure class="tile t2" data-depth="-0.04">
-          <img src="assets/img/stop-highway.jpg" alt="Trucks at a highway stop at night" width="1024" height="768">
+        <figure class="tile t2">
+          <img decoding="async" src="assets/img/stop-highway.jpg" alt="Trucks at a highway stop at night" width="1024" height="768">
           <figcaption><span class="chip warm">Hot</span>Two days on the road</figcaption>
         </figure>
-        <figure class="tile t3" data-depth="0.09">
-          <img src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684">
+        <figure class="tile t3">
+          <img decoding="async" src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684">
           <figcaption><span class="chip warm">Hotter</span>No reliable fridge</figcaption>
         </figure>
-        <figure class="tile t4" data-depth="-0.07">
-          <img src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575">
+        <figure class="tile t4">
+          <img decoding="async" src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575">
           <figcaption><span class="chip gold">InStrong</span>Stable at 50°C</figcaption>
         </figure>
       </div>
@@ -112,42 +112,42 @@
   </section>
 
   <!-- HEAT: the visitor drags the temperature and the photo heats up -->
-  <section class="heat" id="heat" style="--heat:.67">
-    <div class="heat-photo" aria-hidden="true">
-      <img src="assets/img/stop-patient.jpg" alt="" width="1024" height="520" loading="lazy">
-      <div class="heat-cold"></div>
-      <div class="heat-hot"></div>
-    </div>
+  <section class="section heat" id="heat" style="--heat:.67">
     <div class="wrap heat-grid">
       <div class="heat-copy">
         <p class="eyebrow">Drag the heat</p>
         <h2>Where does your insulin spend the afternoon?</h2>
+        <label class="sr-only" for="tempRange">Temperature in degrees Celsius</label>
+        <input type="range" id="tempRange" min="4" max="50" step="1" value="35">
+        <div class="heat-scale"><span>4°C · a fridge</span><span>50°C</span></div>
+        <div class="vials">
+          <div class="vial bad" id="vialStd">
+            <p class="vial-k">Conventional insulin</p>
+            <p class="vial-t">Labelled for storage at 2–8°C until use. Needs a working fridge at every step.</p>
+            <span class="state" id="stdState">Outside storage range</span>
+          </div>
+          <div class="vial ok" id="vialLmk">
+            <p class="vial-k">InStrong</p>
+            <p class="vial-t">Lamark's thermostable insulin. Stability sustained over time at 50°C.</p>
+            <span class="state" id="lmkState">Within tested range</span>
+          </div>
+        </div>
+        <p class="vial-note">InStrong is in development and not yet approved for patient use.</p>
+      </div>
+      <div class="heat-visual">
+        <img src="assets/img/stop-patient.jpg" alt="A crowded street on a hot summer day" width="1024" height="520" loading="lazy" decoding="async">
+        <div class="heat-cold" aria-hidden="true"></div>
+        <div class="heat-hot" aria-hidden="true"></div>
         <div class="heat-reading">
           <div class="heat-temp"><span id="tempVal">35</span><small>°C</small></div>
           <p class="heat-place" id="tempPlace">A Delhi afternoon in April</p>
         </div>
-        <label class="sr-only" for="tempRange">Temperature in degrees Celsius</label>
-        <input type="range" id="tempRange" min="4" max="50" step="1" value="35">
-        <div class="heat-scale"><span>4°C · a fridge</span><span>50°C</span></div>
-      </div>
-      <div class="vials">
-        <div class="vial bad" id="vialStd">
-          <p class="vial-k">Conventional insulin</p>
-          <p class="vial-t">Labelled for storage at 2–8°C until use. Needs a working fridge at every step.</p>
-          <span class="state" id="stdState">Outside storage range</span>
-        </div>
-        <div class="vial ok" id="vialLmk">
-          <p class="vial-k">InStrong</p>
-          <p class="vial-t">Lamark's thermostable insulin. Stability sustained over time at 50°C.</p>
-          <span class="state" id="lmkState">Within tested range</span>
-        </div>
-        <p class="vial-note">InStrong is in development and not yet approved for patient use.</p>
       </div>
     </div>
   </section>
 
   <!-- JOURNEY: a filmstrip, one photograph per stop -->
-  <section class="section journey dark" id="journey">
+  <section class="section journey" id="journey">
     <div class="wrap">
       <div class="journey-head">
         <div class="section-head reveal">
@@ -163,7 +163,7 @@
 
     <ol class="film" id="film" aria-label="Five stops from factory to patient">
       <li class="frame">
-        <img src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory bench" width="890" height="500" loading="lazy">
+        <img decoding="async" src="assets/img/lab-bench.jpg" alt="A pharmaceutical laboratory bench" width="890" height="500" loading="lazy">
         <div class="frame-body">
           <span class="frame-n">01</span>
           <h3>Factory</h3>
@@ -173,7 +173,7 @@
         </div>
       </li>
       <li class="frame">
-        <img src="assets/img/stop-highway.jpg" alt="Trucks parked at a highway stop at night" width="1024" height="768" loading="lazy">
+        <img decoding="async" src="assets/img/stop-highway.jpg" alt="Trucks parked at a highway stop at night" width="1024" height="768" loading="lazy">
         <span class="stamp">Breaks here</span>
         <div class="frame-body">
           <span class="frame-n">02</span>
@@ -184,7 +184,7 @@
         </div>
       </li>
       <li class="frame">
-        <img src="assets/img/stop-store.jpg" alt="A primary health centre in India" width="1024" height="768" loading="lazy">
+        <img decoding="async" src="assets/img/stop-store.jpg" alt="A primary health centre in India" width="1024" height="768" loading="lazy">
         <span class="stamp">Breaks here</span>
         <div class="frame-body">
           <span class="frame-n">03</span>
@@ -195,7 +195,7 @@
         </div>
       </li>
       <li class="frame">
-        <img src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684" loading="lazy">
+        <img decoding="async" src="assets/img/stop-pharmacy.jpg" alt="A small medical store in India" width="1024" height="684" loading="lazy">
         <span class="stamp">Breaks here</span>
         <div class="frame-body">
           <span class="frame-n">04</span>
@@ -206,7 +206,7 @@
         </div>
       </li>
       <li class="frame">
-        <img src="assets/img/stop-patient.jpg" alt="A crowded street on a hot summer day" width="1024" height="520" loading="lazy">
+        <img decoding="async" src="assets/img/stop-patient.jpg" alt="A crowded street on a hot summer day" width="1024" height="520" loading="lazy">
         <span class="stamp">Breaks here</span>
         <div class="frame-body">
           <span class="frame-n">05</span>
@@ -229,15 +229,17 @@
     </div>
   </section>
 
-  <!-- QUOTE: their own best line, over a photograph -->
-  <section class="quote" id="science">
-    <img src="assets/img/lab-microscope.jpg" alt="" width="900" height="600" loading="lazy">
-    <div class="wrap quote-inner reveal">
-      <p class="eyebrow">ProteoStrong technology</p>
-      <blockquote>
-        <p>Think of formulation as <span class="hl">“building a nest”.</span></p>
-        <footer>Like a mother’s embrace, formulation protects the molecule from the harsh realities of the outside world: extreme temperatures, light, movement, time.</footer>
-      </blockquote>
+  <!-- QUOTE: their own best line, beside a photograph -->
+  <section class="section quote" id="science">
+    <div class="wrap quote-grid">
+      <figure class="quote-photo reveal"><img src="assets/img/lab-microscope.jpg" alt="Scientists working at a microscope" width="900" height="600" loading="lazy" decoding="async"></figure>
+      <div class="reveal">
+        <p class="eyebrow">ProteoStrong technology</p>
+        <blockquote>
+          <p>Think of formulation as <span class="hl">“building a nest”.</span></p>
+          <footer>Like a mother’s embrace, formulation protects the molecule from the harsh realities of the outside world: extreme temperatures, light, movement, time.</footer>
+        </blockquote>
+      </div>
     </div>
   </section>
 
@@ -283,7 +285,7 @@
   </section>
 
   <!-- PROGRAMMES: tall photo cards -->
-  <section class="section programmes dark" id="programmes">
+  <section class="section programmes" id="programmes">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Programmes</p>
@@ -291,7 +293,7 @@
       </div>
       <div class="progs">
         <article class="prog diab reveal">
-          <img src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575" loading="lazy">
+          <div class="prog-media"><img decoding="async" src="assets/img/insulin-pen.jpg" alt="An insulin pen" width="1024" height="575" loading="lazy"></div>
           <div class="prog-body">
             <p class="area">Diabetes</p>
             <h3>InStrong</h3>
@@ -305,7 +307,7 @@
           </div>
         </article>
         <article class="prog eye reveal">
-          <img src="assets/img/eye.jpg" alt="Close-up of a human eye" width="768" height="1024" loading="lazy">
+          <div class="prog-media"><img decoding="async" src="assets/img/eye.jpg" alt="Close-up of a human eye" width="768" height="1024" loading="lazy"></div>
           <div class="prog-body">
             <p class="area">Wet AMD</p>
             <h3>EyeStrong</h3>
@@ -319,7 +321,7 @@
           </div>
         </article>
         <article class="prog onc reveal">
-          <img src="assets/img/lab-tubes.jpg" alt="Test tubes in a laboratory rack" width="900" height="600" loading="lazy">
+          <div class="prog-media"><img decoding="async" src="assets/img/lab-tubes.jpg" alt="Test tubes in a laboratory rack" width="900" height="600" loading="lazy"></div>
           <div class="prog-body">
             <p class="area">Lung cancer</p>
             <h3>OncoStrong</h3>
@@ -404,22 +406,22 @@
       </div>
       <div class="faces">
         <figure class="face reveal">
-          <img src="assets/img/vaibhav.jpg" alt="Vaibhav Bhatia" width="500" height="534" loading="lazy">
+          <div class="face-frame"><img decoding="async" src="assets/img/vaibhav.jpg" alt="Vaibhav Bhatia" width="500" height="534" loading="lazy"></div>
           <figcaption><strong>Vaibhav Bhatia, PhD</strong><span>Founder and CEO</span></figcaption>
         </figure>
         <figure class="face reveal">
-          <img src="assets/img/luis.jpg" alt="Luis A. D. Cienfuegos" width="500" height="500" loading="lazy">
+          <div class="face-frame"><img decoding="async" src="assets/img/luis.jpg" alt="Luis A. D. Cienfuegos" width="500" height="500" loading="lazy"></div>
           <figcaption><strong>Luis A. D. Cienfuegos, PhD</strong><span>Director, R&amp;D</span></figcaption>
         </figure>
         <figure class="face reveal">
-          <img src="assets/img/jose.jpg" alt="José A. Gavira" width="500" height="498" loading="lazy">
+          <div class="face-frame"><img decoding="async" src="assets/img/jose.jpg" alt="José A. Gavira" width="500" height="498" loading="lazy"></div>
           <figcaption><strong>José A. Gavira, PhD</strong><span>Chief Scientific Officer</span></figcaption>
         </figure>
       </div>
 
       <div class="team-row">
         <figure class="team-photo reveal">
-          <img src="assets/img/team-group.jpg" alt="The Lamark team with Symphony Technologies at a biostatistics workshop" width="1187" height="876" loading="lazy">
+          <img decoding="async" src="assets/img/team-group.jpg" alt="The Lamark team with Symphony Technologies at a biostatistics workshop" width="1187" height="876" loading="lazy">
           <figcaption>With Symphony Technologies at the biostatistics workshop</figcaption>
         </figure>
         <ol class="timeline reveal">
@@ -435,7 +437,7 @@
   </section>
 
   <!-- GALLERY: news told in photographs, opens full size -->
-  <section class="section gallery-sec dark" id="gallery">
+  <section class="section gallery-sec" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Lamark in pictures</p>
@@ -443,21 +445,21 @@
         <p class="lede">Tap any photo to see it full size.</p>
       </div>
       <div class="gallery reveal">
-        <button type="button" class="g g-big" data-cap="Malvern event at Venture Center, Pune"><img src="assets/img/venture-group.jpg" alt="A large group outside Venture Center, Pune" width="1200" height="1094" loading="lazy"><span>Malvern event, Venture Center</span></button>
-        <button type="button" class="g" data-cap="Partnering with Malvern to explore innovation in biologics and nanoformulations"><img src="assets/img/news-malvern.jpg" alt="Lamark and Malvern at an exhibition stand" width="800" height="728" loading="lazy"><span>Partnership with Malvern</span></button>
-        <button type="button" class="g" data-cap="At the CSIR conclave"><img src="assets/img/news-csir.jpg" alt="Visitors at the Lamark stand at the CSIR conclave" width="800" height="728" loading="lazy"><span>CSIR conclave</span></button>
-        <button type="button" class="g g-tall" data-cap="Named one of the best three startups in biopharma at IKMC 2019"><img src="assets/img/news-ikmc.jpg" alt="The Lamark team receiving an award at IKMC 2019" width="500" height="500" loading="lazy"><span>Award, IKMC 2019</span></button>
-        <button type="button" class="g" data-cap="Biopharmaceutical product development workshop, Goa"><img src="assets/img/news-goa.jpg" alt="Panel on stage at the workshop in Goa" width="800" height="728" loading="lazy"><span>Biosimilar workshop, Goa</span></button>
-        <button type="button" class="g" data-cap="Biostatistics workshop with Symphony Technologies"><img src="assets/img/news-biostats.jpg" alt="A talk at the biostatistics workshop" width="900" height="820" loading="lazy"><span>Biostatistics workshop</span></button>
-        <button type="button" class="g g-wide" data-cap="Bengaluru Tech Summit"><img src="assets/img/news-bts-talk.jpg" alt="Conversation at the Lamark stand at Bengaluru Tech Summit" width="900" height="820" loading="lazy"><span>Bengaluru Tech Summit</span></button>
-        <button type="button" class="g" data-cap="At the IKP Knowledge Park pavilion, Bengaluru Tech Summit 2022"><img src="assets/img/news-bts.jpg" alt="The Lamark Biotech stand at Bengaluru Tech Summit 2022" width="500" height="500" loading="lazy"><span>BTS 2022</span></button>
+        <button type="button" class="g g-big" data-cap="Malvern event at Venture Center, Pune"><img decoding="async" src="assets/img/venture-group.jpg" alt="A large group outside Venture Center, Pune" width="1200" height="1094" loading="lazy"><span>Malvern event, Venture Center</span></button>
+        <button type="button" class="g" data-cap="Partnering with Malvern to explore innovation in biologics and nanoformulations"><img decoding="async" src="assets/img/news-malvern.jpg" alt="Lamark and Malvern at an exhibition stand" width="800" height="728" loading="lazy"><span>Partnership with Malvern</span></button>
+        <button type="button" class="g" data-cap="At the CSIR conclave"><img decoding="async" src="assets/img/news-csir.jpg" alt="Visitors at the Lamark stand at the CSIR conclave" width="800" height="728" loading="lazy"><span>CSIR conclave</span></button>
+        <button type="button" class="g g-tall" data-cap="Named one of the best three startups in biopharma at IKMC 2019"><img decoding="async" src="assets/img/news-ikmc.jpg" alt="The Lamark team receiving an award at IKMC 2019" width="500" height="500" loading="lazy"><span>Award, IKMC 2019</span></button>
+        <button type="button" class="g" data-cap="Biopharmaceutical product development workshop, Goa"><img decoding="async" src="assets/img/news-goa.jpg" alt="Panel on stage at the workshop in Goa" width="800" height="728" loading="lazy"><span>Biosimilar workshop, Goa</span></button>
+        <button type="button" class="g" data-cap="Biostatistics workshop with Symphony Technologies"><img decoding="async" src="assets/img/news-biostats.jpg" alt="A talk at the biostatistics workshop" width="900" height="820" loading="lazy"><span>Biostatistics workshop</span></button>
+        <button type="button" class="g g-wide" data-cap="Bengaluru Tech Summit"><img decoding="async" src="assets/img/news-bts-talk.jpg" alt="Conversation at the Lamark stand at Bengaluru Tech Summit" width="900" height="820" loading="lazy"><span>Bengaluru Tech Summit</span></button>
+        <button type="button" class="g" data-cap="At the IKP Knowledge Park pavilion, Bengaluru Tech Summit 2022"><img decoding="async" src="assets/img/news-bts.jpg" alt="The Lamark Biotech stand at Bengaluru Tech Summit 2022" width="500" height="500" loading="lazy"><span>BTS 2022</span></button>
       </div>
     </div>
   </section>
 
   <dialog class="lightbox" id="lightbox" aria-label="Photo">
     <figure>
-      <img id="lbImg" src="assets/img/venture-group.jpg" alt="">
+      <img decoding="async" id="lbImg" src="assets/img/venture-group.jpg" alt="">
       <figcaption id="lbCap"></figcaption>
     </figure>
     <button type="button" class="round lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -479,7 +481,7 @@
           <button type="button" aria-pressed="false" data-who="talent">Scientist looking to join</button>
         </div>
         <div class="who-pitch" aria-live="polite">
-          <img id="whoImg" src="assets/img/news-malvern.jpg" alt="" width="800" height="728" loading="lazy">
+          <img decoding="async" id="whoImg" src="assets/img/news-malvern.jpg" alt="" width="800" height="728" loading="lazy">
           <div>
             <strong id="whoTitle">License ProteoStrong, or co-develop</strong>
             <p id="whoText">We partner with pharmaceutical companies for API manufacturing, clinical trials and market expansion. Our technology is already applied to insulin and four other proteins.</p>
@@ -519,7 +521,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <img class="foot-logo" src="assets/lamark-logo.png" width="640" height="277" alt="Lamark Biotech" loading="lazy">
+        <img decoding="async" class="foot-logo" src="assets/lamark-logo.png" width="640" height="277" alt="Lamark Biotech" loading="lazy">
         <p style="margin-top:16px;max-width:38ch">Thermostable biologics for places the cold chain doesn't reach. Pune and Paris.</p>
       </div>
       <div>

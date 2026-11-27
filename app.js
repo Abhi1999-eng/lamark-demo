@@ -19,28 +19,11 @@
     a.addEventListener('click', function () { header.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
   });
 
-  // Scroll: header border, hero tiles drift, quote photo drifts. One rAF per frame.
-  var tiles = document.querySelectorAll('.tile[data-depth]');
-  var quote = document.querySelector('.quote');
-  var quoteImg = quote && quote.querySelector('img');
-  var ticking = false;
-  function onScroll() {
-    var y = window.scrollY;
-    header.classList.toggle('scrolled', y > 8);
-    if (!reduce) {
-      if (y < 1200 && innerWidth > 960) tiles.forEach(function (t) { t.style.setProperty('--py', (y * Number(t.dataset.depth)).toFixed(1) + 'px'); });
-      if (quoteImg) {
-        var r = quote.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < innerHeight) {
-          var p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
-          quoteImg.style.setProperty('--qy', (p * -60).toFixed(1) + 'px');
-        }
-      }
-    }
-    ticking = false;
+  // Pause the trust marquee whenever it is off screen, so it costs nothing while you read
+  var marquee = document.querySelector('.hero-marquee');
+  if (marquee && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { marquee.classList.toggle('paused', !en[0].isIntersecting); }).observe(marquee);
   }
-  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  onScroll();
 
   // Heat: the slider drives the photo's colour and the two vials
   var places = [
@@ -65,14 +48,18 @@
     for (var i = 0; i < places.length; i++) if (t >= places[i][0]) label = places[i][1];
     return label;
   }
+  var lastInRange = null;
   function updateTemp() {
     var t = Number(range.value);
     tempVal.textContent = t;
     tempPlace.textContent = placeFor(t);
     heat.style.setProperty('--heat', ((t - 4) / 46).toFixed(3));
     var inRange = t <= 8;
-    vialStd.className = 'vial ' + (inRange ? 'ok' : 'bad');
-    stdState.textContent = inRange ? 'Within storage range' : 'Outside storage range';
+    if (inRange !== lastInRange) {
+      lastInRange = inRange;
+      vialStd.className = 'vial ' + (inRange ? 'ok' : 'bad');
+      stdState.textContent = inRange ? 'Within storage range' : 'Outside storage range';
+    }
   }
   range.addEventListener('input', updateTemp);
   updateTemp();
@@ -86,13 +73,17 @@
   function updateFilm() {
     var max = film.scrollWidth - film.clientWidth;
     var p = max > 0 ? film.scrollLeft / max : 1;
-    bar.style.width = (20 + p * 80).toFixed(1) + '%';
+    bar.style.transform = 'scaleX(' + (0.2 + p * 0.8).toFixed(3) + ')';
     prev.disabled = film.scrollLeft < 4;
     next.disabled = film.scrollLeft > max - 4;
   }
   prev.addEventListener('click', function () { film.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
   next.addEventListener('click', function () { film.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
-  film.addEventListener('scroll', updateFilm, { passive: true });
+  var filmTick = false;
+  film.addEventListener('scroll', function () {
+    if (filmTick) return; filmTick = true;
+    requestAnimationFrame(function () { updateFilm(); filmTick = false; });
+  }, { passive: true });
   window.addEventListener('resize', updateFilm);
   updateFilm();
 
